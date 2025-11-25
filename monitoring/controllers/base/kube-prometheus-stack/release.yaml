@@ -30,4 +30,15 @@ spec:
           kind: PrometheusRule
   values:
     grafana:
-      adminPassword: admin
+      adminPassword: mischa
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+
+        hosts:
+          - grs.aadilagwan.dev
+
+        tls:
+          - secretName: grafana-tls-secret
+            hosts:
+              - grs.aadilagwan.dev
