@@ -1,4 +1,13 @@
-
 #!/bin/bash
+
+packages=(
+  fluxcd/tap/flux
+  k9s
+)
+
+for package in "${packages[@]}"; do
+  echo "Install $package..."
+  /home/linuxbrew/.linuxbrew/bin/brew install $package
+done
 
 /usr/local/bin/mise trust /workspaces/"$DEVPOD_WORKSPACE_ID"/mise.toml && /usr/local/bin/mise install

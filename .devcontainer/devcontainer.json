@@ -5,7 +5,7 @@
   },
   "onCreateCommand": "sudo chsh -s /usr/bin/zsh $USER",
   "features": {
-    "ghcr.io/devcontainers-extra/features/neovim-homebrew:1": {}
+    "ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {}
   },
   "remoteEnv": {
     "MISE_GITHUB_TOKEN": "${localEnv:MISE_GITHUB_TOKEN}"

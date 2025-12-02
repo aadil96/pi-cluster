@@ -1,16 +1,17 @@
 #!/bin/bash
 
-# if [ "$DEVPOD" = "true" ]; then
-#   WORKINGDIR=/workspaces/$DEVPOD_WORKSPACE_ID
-#   if ! command -v cz >/dev/null; then
-#     git config --global push.autoSetupRemote true
-#     git config --global --add safe.directory $WORKINGDIR
-#     pip install --user pipx
-#     pipx install commitizen
-#     pre-commit install
-#     pre-commit install --hook-type commit-msg
-#   fi
-# fi
+WORKINGDIR=/workspaces/$DEVPOD_WORKSPACE_ID
+
+if [ "$DEVPOD" = "true" ]; then
+  if ! command -v cz >/dev/null; then
+    git config --global push.autoSetupRemote true
+    git config --global --add safe.directory $WORKINGDIR
+    pip install --user pipx
+    pipx install commitizen
+    # pre-commit install
+    # pre-commit install --hook-type commit-msg
+  fi
+fi
 
 if command -v direnv >/dev/null 2>&1; then
   if [[ -f $HOME/.bashrc ]] && ! grep -q 'direnv hook bash' "$HOME/.bashrc"; then
@@ -21,5 +22,16 @@ if command -v direnv >/dev/null 2>&1; then
   if [[ -f "$HOME/.zshrc" ]] && ! grep -q 'direnv hook zsh' "$HOME/.zshrc"; then
     echo -e 'eval "$(direnv hook zsh)"' >>$HOME/.zshrc
     echo -e "direnv allow $WORKINGDIR/.envrc" >>$HOME/.zshrc
+  fi
+fi
+
+
+if command -v flux >/dev/null; then
+  if [[ -f $HOME/.bashrc ]] && ! grep -q 'flux completion bash' "$HOME/.bashrc"; then
+    echo -e '. <(flux completion bash)' >>$HOME/.bashrc
+  fi
+
+  if [[ -f $HOME/.zshrc ]] && ! grep -q 'flux completion zsh' "$HOME/.zshrc"; then
+    echo -e '. <(flux completion zsh)' >>$HOME/.zshrc
   fi
 fi

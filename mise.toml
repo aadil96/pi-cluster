@@ -2,7 +2,6 @@
 k3d = "latest"
 kubectl = "latest"
 node = "latest"
-pre-commit = "latest"
 python = "3.13"
 ruff = "latest"
 uv = "latest"
