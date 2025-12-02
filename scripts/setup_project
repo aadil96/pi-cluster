@@ -1,16 +1,16 @@
 #!/bin/bash
 
-if [ "$DEVPOD" = "true" ]; then
-  WORKINGDIR=/workspaces/$DEVPOD_WORKSPACE_ID
-  if ! command -v cz >/dev/null; then
-    git config --global push.autoSetupRemote true
-    git config --global --add safe.directory $WORKINGDIR
-    pip install --user pipx
-    pipx install commitizen
-    pre-commit install
-    pre-commit install --hook-type commit-msg
-  fi
-fi
+# if [ "$DEVPOD" = "true" ]; then
+#   WORKINGDIR=/workspaces/$DEVPOD_WORKSPACE_ID
+#   if ! command -v cz >/dev/null; then
+#     git config --global push.autoSetupRemote true
+#     git config --global --add safe.directory $WORKINGDIR
+#     pip install --user pipx
+#     pipx install commitizen
+#     pre-commit install
+#     pre-commit install --hook-type commit-msg
+#   fi
+# fi
 
 if command -v direnv >/dev/null 2>&1; then
   if [[ -f $HOME/.bashrc ]] && ! grep -q 'direnv hook bash' "$HOME/.bashrc"; then
