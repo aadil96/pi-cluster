@@ -1,0 +1,21 @@
+[tools]
+k3d = "latest"
+kubectl = "latest"
+node = "latest"
+pre-commit = "latest"
+python = "3.13"
+ruff = "latest"
+uv = "latest"
+neovim = "latest"
+direnv = "latest"
+
+[env]
+APP_REPO = 'pi-cluster'
+GITOPS_REPO = 'pi-cluster-gitops'
+
+[hooks]
+enter = "bash ./scripts/setup_project"
+
+[settings]
+experimental = true
+
