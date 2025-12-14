@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared
+  namespace: cloudflare-tunnel
+data:
+  config.yaml: |
+    # Updated tunnel name
+    tunnel: pi-cluster
+    credentials-file: /etc/cloudflared/creds/credentials.json
+    metrics: 0.0.0.0:2000
+    no-autoupdate: true
+    ingress:
+    # Linkding
+    - hostname: linkding.aadilagwan.dev  # Changed from ldpi.aadilagwan.dev
+      service: http://linkding.linkding:9090
+
+    # Homarr
+    - hostname: homarr.aadilagwan.dev
+      service: http://homarr.homarr:7575
+
+    # # Debug
+    # - hostname: hello.aadilagwan.dev  # Optional: update this too
+    #   service: hello_world
+
+    # Catch-all
+    - service: http_status:404

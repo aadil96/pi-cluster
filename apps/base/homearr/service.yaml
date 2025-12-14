@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: homearr
+spec:
+  ports:
+    - port: 7575
+  selector:
+    app: homearr
+  type: ClusterIP
