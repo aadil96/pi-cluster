@@ -12,6 +12,10 @@ spec:
       labels:
         app: cloudflared
     spec:
+      dnsConfig:
+        searches:
+          - linkding.svc.cluster.local
+          - homarr.svc.cluster.local
       containers:
         - name: cloudflared
           image: cloudflare/cloudflared:2025.11.1

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: homearr
+  name: homarr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: homearr
+      app: homarr
   template:
     metadata:
       labels:
-        app: homearr
+        app: homarr
     spec:
       securityContext:
         fsGroup: 33
@@ -18,21 +18,21 @@ spec:
         runAsGroup: 33
 
       containers:
-        - name: homearr
+        - name: homarr
           image: ghcr.io/homarr-labs/homarr:v1.40.0
           ports:
             - containerPort: 7575
           envFrom:
             - secretRef:
-                name: homearr-container-env
+                name: homarr-container-env
 
           securityContext:
             allowPrivilageEscalation: false
 
           volumeMounts:
-            - name: homearr-data
+            - name: homarr-data
               mountPath: /appdata
       volumes:
-        - name: homearr-data
+        - name: homarr-data
           persistentVolumeClaim:
-            claimName: homearr-data-pvc
+            claimName: homarr-data-pvc
