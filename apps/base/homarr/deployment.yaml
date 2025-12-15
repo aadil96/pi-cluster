@@ -16,23 +16,60 @@ spec:
         fsGroup: 33
         runAsUser: 33
         runAsGroup: 33
+      
 
       containers:
         - name: homarr
           image: ghcr.io/homarr-labs/homarr:v1.40.0
           ports:
-            - containerPort: 7575
+          - containerPort: 7575
+            name: http
+            protocol: TCP
+          env:
+          - name: BASE_URL
+            value: "https://homarr.aadilagwan.dev"
+          - name: TZ
+            value: "Asia/Kolkata"          
           envFrom:
             - secretRef:
                 name: homarr-container-env
-
-          securityContext:
-            allowPrivilageEscalation: false
-
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
           volumeMounts:
-            - name: homarr-data
-              mountPath: /appdata
+          - name: homarr-data
+            mountPath: /app/data/configs
+          - name: homarr-icons
+            mountPath: /app/public/icons
+          - name: homarr-database
+            mountPath: /data
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
       volumes:
-        - name: homarr-data
-          persistentVolumeClaim:
-            claimName: homarr-data-pvc
+      - name: homarr-data
+        persistentVolumeClaim:
+          claimName: homarr-data-pvc
+      - name: homarr-icons
+        persistentVolumeClaim:
+          claimName: homarr-icons-pvc
+      - name: homarr-database
+        persistentVolumeClaim:
+          claimName: homarr-database-pvc
