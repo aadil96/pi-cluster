@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi-hole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pi-hole
+  template:
+    metadata:
+      labels:
+        app: pi-hole
+    spec:
+      securityContext:
+        fsGroup: 33
+        runAsUser: 33
+        runAsGroup: 33
+
+      containers:
+        - name: pi-hole
+          image: pihole/pihole:2025.11.0
+          env:
+            - name: TZ
+              value: "Asia/Kolkata"
+            - name: WEBPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pihole-secret
+                  key: WEBPASSWORD
+          envFrom:
+            - secretRef:
+                name: pihole-secret
+          ports:
+            - containerPort: 53
+              protocol: UDP
+            - containerPort: 53
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: etc-pihole
+              mountPath: /etc/pihole
+            - name: etc-dnsmasq
+              mountPath: /etc/dnsmasq.d
+      volumes:
+        - name: etc-pihole
+          persistentVolumeClaim:
+            claimName: pihole-etc-pihole
+        - name: etc-dnsmasq
+          persistentVolumeClaim:
+            claimName: pihole-etc-dnsmasq

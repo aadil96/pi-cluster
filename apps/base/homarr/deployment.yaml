@@ -16,20 +16,22 @@ spec:
         fsGroup: 33
         runAsUser: 33
         runAsGroup: 33
-      
-
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: homarr
           image: ghcr.io/homarr-labs/homarr:v1.46.0
           ports:
-          - containerPort: 3000
-            name: http
-            protocol: TCP
+            - containerPort: 3000
+              name: http
+              protocol: TCP
           env:
-          - name: BASE_URL
-            value: "https://homarr.aadilagwan.dev"
-          - name: TZ
-            value: "Asia/Kolkata"          
+            - name: DNS1
+              value: "8.8.8.8"
+            - name: DNS2
+              value: "8.8.4.4"
+            - name: TZ
+              value: "Asia/Kolkata"
           envFrom:
             - secretRef:
                 name: homarr-container-env
@@ -52,8 +54,8 @@ spec:
           #   timeoutSeconds: 3
           #   failureThreshold: 3
           volumeMounts:
-          - name: homarr-data
-            mountPath: /appdata
+            - name: homarr-data
+              mountPath: /appdata
           resources:
             requests:
               memory: "512Mi"
@@ -62,6 +64,7 @@ spec:
               memory: "1Gi"
               cpu: "1000m"
       volumes:
-      - name: homarr-data
-        persistentVolumeClaim:
-          claimName: homarr-data-pvc
+        - name: homarr-data
+          persistentVolumeClaim:
+            claimName: homarr-data-pvc
+
