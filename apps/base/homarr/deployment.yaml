@@ -51,25 +51,15 @@ spec:
             failureThreshold: 3
           volumeMounts:
           - name: homarr-data
-            mountPath: /app/data/configs
-          - name: homarr-icons
-            mountPath: /app/public/icons
-          - name: homarr-database
-            mountPath: /data
+            mountPath: /appdata
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "100m"
-            limits:
               memory: "512Mi"
-              cpu: "500m"
+              cpu: "200m"
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"
       volumes:
       - name: homarr-data
         persistentVolumeClaim:
           claimName: homarr-data-pvc
-      - name: homarr-icons
-        persistentVolumeClaim:
-          claimName: homarr-icons-pvc
-      - name: homarr-database
-        persistentVolumeClaim:
-          claimName: homarr-database-pvc
