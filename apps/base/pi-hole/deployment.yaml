@@ -11,7 +11,8 @@ spec:
     metadata:
       labels:
         app: pi-hole
-    
+    spec:
+      
       # hostNetwork: true
       # dnsPolicy: ClusterFirstWithHostNet
       containers:
