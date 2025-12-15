@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: homarr
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: homarr
@@ -12,7 +12,7 @@ spec:
   interval: 1h
   url: https://homarr-labs.github.io/helm-charts
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: homarr
