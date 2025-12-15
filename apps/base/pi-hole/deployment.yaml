@@ -13,9 +13,13 @@ spec:
         app: pi-hole
     spec:
       securityContext:
-        fsGroup: 33
-        runAsUser: 33
-        runAsGroup: 33
+        runAsUser: 0
+        runAsGroup: 0
+        allowPrivilegeEscalation: true
+        capabilities:
+          add:
+            - NET_ADMIN
+            - SYS_NICE
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       containers:
