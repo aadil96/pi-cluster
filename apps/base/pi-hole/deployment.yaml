@@ -29,11 +29,13 @@ spec:
           env:
             - name: TZ
               value: "Asia/Kolkata"
-            - name: WEBPASSWORD
+            - name: FTLCONF_dns_listeningMode
+              value: "ALL"
+            - name: FTLCONF_webserver_api_password
               valueFrom:
                 secretKeyRef:
                   name: pihole-secret
-                  key: WEBPASSWORD
+                  key: FTLCONF_webserver_api_password
           ports:
             - containerPort: 53
               protocol: UDP
