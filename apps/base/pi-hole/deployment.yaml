@@ -20,8 +20,8 @@ spec:
           add:
             - NET_ADMIN
             - SYS_NICE
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
+      # hostNetwork: true
+      # dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: pi-hole
           image: pihole/pihole:2025.11.0
