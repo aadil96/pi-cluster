@@ -11,20 +11,20 @@ spec:
     metadata:
       labels:
         app: pi-hole
-    spec:
-      securityContext:
-        runAsUser: 0
-        runAsGroup: 0
-        allowPrivilegeEscalation: true
-        capabilities:
-          add:
-            - NET_ADMIN
-            - SYS_NICE
+    
       # hostNetwork: true
       # dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: pi-hole
           image: pihole/pihole:2025.11.0
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            allowPrivilegeEscalation: true
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_NICE
           env:
             - name: TZ
               value: "Asia/Kolkata"
@@ -33,9 +33,6 @@ spec:
                 secretKeyRef:
                   name: pihole-secret
                   key: WEBPASSWORD
-          envFrom:
-            - secretRef:
-                name: pihole-secret
           ports:
             - containerPort: 53
               protocol: UDP
