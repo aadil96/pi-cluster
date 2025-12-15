@@ -33,22 +33,24 @@ spec:
           envFrom:
             - secretRef:
                 name: homarr-container-env
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 3
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 3
+          readinessProbe: null
+          livenessProbe: null
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          #   initialDelaySeconds: 30
+          #   periodSeconds: 10
+          #   timeoutSeconds: 5
+          #   failureThreshold: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 5
+          #   timeoutSeconds: 3
+          #   failureThreshold: 3
           volumeMounts:
           - name: homarr-data
             mountPath: /appdata
