@@ -16,8 +16,7 @@ spec:
         fsGroup: 33
         runAsUser: 33
         runAsGroup: 33
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
+
       containers:
         - name: homarr
           image: ghcr.io/homarr-labs/homarr:v1.46.0
@@ -26,10 +25,8 @@ spec:
               name: http
               protocol: TCP
           env:
-            - name: DNS1
-              value: "8.8.8.8"
-            - name: DNS2
-              value: "8.8.4.4"
+            - name: BASE_URL
+              value: "https://homarr.aadilagwan.dev"
             - name: TZ
               value: "Asia/Kolkata"
           envFrom:
@@ -67,4 +64,3 @@ spec:
         - name: homarr-data
           persistentVolumeClaim:
             claimName: homarr-data-pvc
-

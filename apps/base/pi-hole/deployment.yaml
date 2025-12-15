@@ -16,7 +16,8 @@ spec:
         fsGroup: 33
         runAsUser: 33
         runAsGroup: 33
-
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: pi-hole
           image: pihole/pihole:2025.11.0
