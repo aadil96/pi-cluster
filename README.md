@@ -18,21 +18,36 @@ A production-grade Kubernetes homelab built on Raspberry Pi clusters, featuring 
 
 ```
 .
-├── apps/                    # Application deployments
-│   └── [Application manifests and configurations]
-├── clusters/                # Cluster-specific configurations
-│   └── staging/             # Staging cluster setup
-├── infrastructure/          # Core infrastructure components
-│   └── [Infrastructure configurations]
-├── monitoring/              # Monitoring and observability stack
-│   └── [Monitoring configurations]
-├── scripts/                 # Utility scripts and automation
-│   └── [Helper scripts and tools]
-├── .devcontainer/           # Development container setup
-├── mise.toml                # Project tool dependencies
-├── renovate.json            # Automated update configuration
-└── .gitignore               # Git ignore rules
-```
+├── mise.toml
+├── renovate.json
+├── README.md
+├── apps/
+│   ├── base/
+│   │   ├── homarr/
+│   │   │   ├── deployment.yaml
+│   │   │   ├── kustomization.yaml
+│   │   │   └── service.yaml
+│   │   └── linkding/
+│   │       ├── deployment.yaml
+│   │       └── kustomization.yaml
+│   └── staging/
+│       ├── homarr/
+│       └── linkding/
+├── clusters/
+│   └── staging/
+│       ├── apps.yaml
+│   │       ├── infrastructure.yaml
+│   │       └── flux-system/
+├── infrastructure/
+│   ├── cloudflare-tunnel/
+│   └── controllers/
+├── monitoring/
+│   ├── configs/
+│   └── controllers/
+└── scripts/
+  ├── setup
+  └── setup_project
+``` 
 
 ## Prerequisites
 
@@ -138,7 +153,6 @@ MIT License - See LICENSE file for details
 ## Authors
 
 - **aadil96** - Project maintainer
-- **Rio Kierkels** - Contributor
 - **Renovate Bot** - Automated dependency management
 
 ## Support & Documentation
