@@ -136,31 +136,12 @@ Use the `.devcontainer` setup for consistent development environments:
 
 - Renovate integration for automated image updates
 - Homarr application dashboard setup
-- Cloudflare integration with PiHole DNS
-- Comprehensive cluster staging environment
-
-## Contributing
-
-1. Create a feature branch
-2. Make changes and test locally
-3. Submit a pull request for review
-4. Renovate bot will handle dependency updates automatically
-
-## License
-
-MIT License - See LICENSE file for details
+- Cloudflare integration
 
 ## Authors
 
 - **aadil96** - Project maintainer
 - **Renovate Bot** - Automated dependency management
-
-## Support & Documentation
-
-For more information:
-- Check the [Wiki](../../wiki) for detailed guides
-- Review commit history for implementation details
-- Examine individual manifests for configuration specifics
 
 ## Roadmap
 
