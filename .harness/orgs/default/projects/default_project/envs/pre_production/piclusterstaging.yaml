@@ -1,0 +1,6 @@
+environment:
+  name: pi-cluster-staging
+  identifier: piclusterstaging
+  orgIdentifier: default
+  projectIdentifier: default_project
+  type: PreProduction
