@@ -16,6 +16,7 @@ spec:
         searches:
           - linkding.svc.cluster.local
           - homarr.svc.cluster.local
+          - n8n.svc.cluster.local
       containers:
         - name: cloudflared
           image: cloudflare/cloudflared:2026.5.2

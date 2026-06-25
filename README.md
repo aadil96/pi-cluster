@@ -27,12 +27,18 @@ A production-grade Kubernetes homelab built on Raspberry Pi clusters, featuring 
 │   │   │   ├── deployment.yaml
 │   │   │   ├── kustomization.yaml
 │   │   │   └── service.yaml
-│   │   └── linkding/
+│   │   ├── linkding/
+│   │   │   ├── deployment.yaml
+│   │   │   └── kustomization.yaml
+│   │   └── n8n/
 │   │       ├── deployment.yaml
-│   │       └── kustomization.yaml
+│   │       ├── kustomization.yaml
+│   │       ├── service.yaml
+│   │       └── storage.yaml
 │   └── staging/
 │       ├── homarr/
-│       └── linkding/
+│       ├── linkding/
+│       └── n8n/
 ├── clusters/
 │   └── staging/
 │       ├── apps.yaml
