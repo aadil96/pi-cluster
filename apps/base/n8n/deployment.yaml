@@ -42,8 +42,6 @@ spec:
               value: "3"
             - name: N8N_SKIP_WEBHOOK_DEREGISTRATION_SHUTDOWN
               value: "true"
-            - name: N8N_RUNNERS_ENABLED
-              value: "true"
             - name: TZ
               value: "Asia/Kolkata"
           envFrom:
@@ -73,8 +71,8 @@ spec:
               memory: "1Gi"
               cpu: "500m"
             limits:
-              memory: "2Gi"
-              cpu: "1500m"
+              memory: "1Gi"
+              cpu: "1000m"
       volumes:
         - name: n8n-data
           persistentVolumeClaim:
