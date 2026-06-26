@@ -34,6 +34,16 @@ spec:
               value: "https://n8n.aadilagwan.dev"
             - name: N8N_USER_FOLDER
               value: "/home/node/.n8n"
+            - name: DB_TYPE
+              value: "sqlite"
+            - name: DB_SQLITE_EXECUTE_MIGRATIONS
+              value: "true"
+            - name: DB_SQLITE_POOL_SIZE
+              value: "3"
+            - name: N8N_SKIP_WEBHOOK_DEREGISTRATION_SHUTDOWN
+              value: "true"
+            - name: N8N_RUNNERS_ENABLED
+              value: "true"
             - name: TZ
               value: "Asia/Kolkata"
           envFrom:
@@ -46,25 +56,25 @@ spec:
             httpGet:
               path: /healthz
               port: http
-            initialDelaySeconds: 60
+            initialDelaySeconds: 180
             periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 3
+            timeoutSeconds: 10
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /healthz
               port: http
-            initialDelaySeconds: 10
+            initialDelaySeconds: 180
             periodSeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 3
+            timeoutSeconds: 10
+            failureThreshold: 5
           resources:
             requests:
-              memory: "512Mi"
-              cpu: "300m"
-            limits:
               memory: "1Gi"
-              cpu: "1000m"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1500m"
       volumes:
         - name: n8n-data
           persistentVolumeClaim:
