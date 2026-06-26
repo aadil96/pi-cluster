@@ -28,6 +28,8 @@ spec:
               value: "n8n.aadilagwan.dev"
             - name: N8N_PROTOCOL
               value: "https"
+            - name: N8N_PROXY_HOPS
+              value: "1"
             - name: N8N_PORT
               value: "5678"
             - name: N8N_EDITOR_BASE_URL
